@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <title>Kaliyattam | Character Reveal</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #080808;
+      color: white;
+      font-family: Georgia, serif;
+    }
+
+    .viewer {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      max-height: 88vh;
+      max-height: 88dvh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    h1 {
+      font-size: 20px;
+      text-align: center;
+      margin: 12px 0;
+    }
+  </style>
+</head>
+<body>
+  <main class="viewer">
+    <img id="character" alt="Character artwork">
+    <h1 id="name"></h1>
+  </main>
+
+  <script>
+    const images = {
+      zor: "zor.png",
+      xatozuva: "XatoZuva.png",
+      xato: "Xato.png",
+      wisagal: "Wisagal.png",
+      tunzoo: "Tunzoo.png",
+      tekhira: "Tekhira.png",
+      savio: "Savio.png",
+      nutubi_2: "Nutubi_2.png",
+      nurubi_1: "Nurubi_1.png",
+      nij: "nij.png",
+      kabuli: "Kabuli.png",
+      ima: "ima.png",
+      evil_one: "Evil_one.png",
+      dinji: "dinji.png",
+      bogidhan: "Bogidhan.png"
+    };
+
+    const params = new URLSearchParams(location.search);
+    const key = (params.get("character") || "").toLowerCase();
+
+    const img = document.getElementById("character");
+    const name = document.getElementById("name");
+
+    if (Object.hasOwn(images, key)) {
+      img.src = images[key];
+      img.alt = key + " character artwork";
+      name.textContent = key.replaceAll("_", " ").toUpperCase();
+    } else {
+      img.style.display = "none";
+      name.textContent = "Character not found";
+    }
+  </script>
+</body>
+</html>
